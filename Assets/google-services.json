@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "302007280348",
+    "project_id": "car-mobile-e606d",
+    "storage_bucket": "car-mobile-e606d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302007280348:android:95eae06fd01f5c652e4a19",
+        "android_client_info": {
+          "package_name": "com.gamecarmobile.firebasedb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDjpaJyXktA_bUgpLwPThQT0xk__YIv9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

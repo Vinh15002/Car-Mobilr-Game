@@ -79,4 +79,6 @@ crashlytics-build.properties
 /[Aa]ssets/SGS
 /[Aa]ssets/SportCar
 
+/[Aa]ssets/Firebase
+/[Aa]ssets/Plugins
 
