@@ -1,15 +1,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class ManagerCar : MonoBehaviour
 {
     public static ManagerCar Instance;
-    
-    public Dictionary<GameObject, int> carMissions;
+
+    [SerializeField] private GameObject mainCar;
+
+    [HideInInspector] public Dictionary<GameObject, int> carMissions;
 
     [SerializeField] private int numberOfLaps;
+
 
 
 
@@ -27,6 +31,7 @@ public class ManagerCar : MonoBehaviour
         if(!carMissions.ContainsKey(car))
         {
             carMissions.Add(car, 0);
+            ManagerPoint.Instance.AddCar(car, numberOfLaps);
         }
         
     }
@@ -44,6 +49,13 @@ public class ManagerCar : MonoBehaviour
         carMissions[car] = amountLapComplete;
     }
 
+
+    public void UpdateRank()
+    {
+        int pos = ManagerPoint.Instance.CalculateRanking(mainCar);
+       
+        RankEvent.updateRank?.Invoke(pos);
+    }
 
 
 

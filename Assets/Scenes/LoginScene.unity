@@ -3551,6 +3551,8 @@ RectTransform:
   - {fileID: 73228303}
   - {fileID: 239948483}
   - {fileID: 1694466249}
+  - {fileID: 1144990876}
+  - {fileID: 1849645300}
   m_Father: {fileID: 1908823445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3601,14 +3603,14 @@ RectTransform:
   m_GameObject: {fileID: 1144990875}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1908823445}
+  m_Father: {fileID: 1139931378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 389, y: -149}
+  m_AnchoredPosition: {x: 34.00003, y: -98.66666}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1144990877
@@ -5365,7 +5367,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0110\u0102NG NH\u1EACP"
+  m_Text: 'LOGIN
+
+'
 --- !u!222 &1625487624
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6000,15 +6004,15 @@ RectTransform:
   m_GameObject: {fileID: 1849645299}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38, y: 0.38, z: 0.38}
+  m_LocalScale: {x: 0.25333336, y: 0.25333336, z: 0.25333336}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1147271147}
-  m_Father: {fileID: 1908823445}
+  m_Father: {fileID: 1139931378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 345, y: 197}
+  m_AnchoredPosition: {x: 238.00003, y: 132}
   m_SizeDelta: {x: 438, y: 198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1849645301
@@ -6530,8 +6534,6 @@ RectTransform:
   m_Children:
   - {fileID: 1367150524}
   - {fileID: 1139931378}
-  - {fileID: 1144990876}
-  - {fileID: 1849645300}
   - {fileID: 277481243}
   - {fileID: 1896330213}
   - {fileID: 998413898}

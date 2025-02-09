@@ -10,7 +10,12 @@ public class StartLap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        ManagerCar.Instance.AddCarPremission(other.gameObject);
+        if (other.CompareTag("Car"))
+        {
+            ManagerCar.Instance.AddCarPremission(other.gameObject);
+
+        }
+        
     }
 }
 
