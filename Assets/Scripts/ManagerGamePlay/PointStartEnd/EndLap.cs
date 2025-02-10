@@ -6,7 +6,11 @@ public class EndLap : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        ManagerCar.Instance.CompleteTheLap(other.gameObject);
+        if (other.CompareTag("Car"))
+        {
+            ManagerCar.Instance.CompleteTheLap(other.gameObject);
+        }
+        
     }
 
 }

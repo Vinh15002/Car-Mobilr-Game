@@ -35,7 +35,7 @@ public class TimeGamePlay: MonoBehaviour
         textDisplayTime.text = ConvertTime();
     }
 
-    private string ConvertTime()
+    public string ConvertTime()
     {
         string result = "";
         int timeGet = Mathf.CeilToInt(timeGame);

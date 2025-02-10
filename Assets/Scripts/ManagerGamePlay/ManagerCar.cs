@@ -44,7 +44,7 @@ public class ManagerCar : MonoBehaviour
         
         if(amountLapComplete == numberOfLaps)
         {
-            Debug.Log(car.name + " : " + "is complete the chanlenger");
+            ManagerEndGame.Instance.AddCarRank(car == mainCar);
         }
         carMissions[car] = amountLapComplete;
     }
@@ -59,6 +59,9 @@ public class ManagerCar : MonoBehaviour
 
 
 
-
+    public int GetAmountCar()
+    {
+        return carMissions.Count;
+    }
 
 }
