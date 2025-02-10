@@ -9,14 +9,18 @@ using UnityEngine;
 
 public class TimeGamePlay: MonoBehaviour
 {
+    public static TimeGamePlay Instance;
 
-    private float timeStart = 0;
+    private float timeGame = 0;
+
+    public float TimeGame {  get { return timeGame; } }
 
 
     private TMP_Text textDisplayTime;
 
     private void Start()
     {
+        Instance = this;
         textDisplayTime = GetComponent<TMP_Text>();
     }
 
@@ -27,18 +31,20 @@ public class TimeGamePlay: MonoBehaviour
 
     private void AddTime()
     {
-        timeStart += Time.deltaTime;
+        timeGame += Time.deltaTime;
         textDisplayTime.text = ConvertTime();
     }
 
     private string ConvertTime()
     {
         string result = "";
-        int timeGet = Mathf.CeilToInt(timeStart);
+        int timeGet = Mathf.CeilToInt(timeGame);
         TimeSpan time = TimeSpan.FromSeconds(timeGet);
         result = time.ToString(@"mm\:ss");
         return result;
     }
+
+
 
 
 

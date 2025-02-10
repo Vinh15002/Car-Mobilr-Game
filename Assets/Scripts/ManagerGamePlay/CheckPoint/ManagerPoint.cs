@@ -36,6 +36,8 @@ public class ManagerPoint : MonoBehaviour
     {
        
         listCar[gameObject].setPassCheckPoint(indexCheckPoint);
+
+       
     }
 
     public void AddCar(GameObject game, int lap)
@@ -53,10 +55,15 @@ public class ManagerPoint : MonoBehaviour
     {
         if (!listCar.ContainsKey(game)) return listCar.Count + 1;
         int result = 0;
-        int currentPoint = listCar[game].Ranking();
+        CarPointRank currentRank = listCar[game];
         foreach(var item in listCar)
         {
-            if(item.Value.Ranking() > currentPoint) result++;
+            if(item.Key!= game)
+            {
+                if (currentRank.CompareRanking(item.Value) == -1) result++;
+            }
+            
+
         }
         return result+1;
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -10,15 +11,16 @@ public class CarPointRank
 {
     
 
-    public bool[,] Point;
+    public float[,] Point;
 
     private int currentLap = 0;
-    private int currentIndex = 0;
+
+   
 
 
     public CarPointRank(int lapCount, int AmountPoint)
     {
-        Point = new bool[lapCount,AmountPoint];
+        Point = new float[lapCount,AmountPoint];
         SetNewMatrixBool(lapCount, AmountPoint);
     }
 
@@ -29,27 +31,68 @@ public class CarPointRank
         {
             for(int j = 0 ; j < row; j++)
             {
-                Point[i,j] = false;
+                Point[i,j] = 0;
             }
         }
     }
 
     public void setPassCheckPoint(int index)
     {
-        currentIndex = index;
-        Point[currentLap,index] = true;
-        if(index == Point.GetLength(1))
+       
+        Point[currentLap,index] = TimeGamePlay.Instance.TimeGame;
+        if(index == Point.GetLength(1)-1)
         {
             currentLap++;
         }
-        Debug.LogError("Length: " + Point.GetLength(1));
+        
         
     }
 
     public int Ranking()
     {
-        Debug.LogError(currentLap * Point.GetLength(1) + currentIndex);
-        return currentLap*Point.GetLength(1) + currentIndex;
+        int result = 0;
+        for (int i = 0; i < Point.GetLength(0); i++)
+        {
+            for (int j = 0; j < Point.GetLength(1); j++)
+            {
+                if (Point[i, j] > 0) result++;
+            }
+        }
+        return result;
+    }
+
+
+    public int CompareRanking(CarPointRank carOpponent)
+    {
+        if(carOpponent.Ranking() == this.Ranking())
+        {
+            float Timerank1 = carOpponent.GetValueRank();
+            float Timerank2 = this.GetValueRank();
+            return (Timerank1 > Timerank2) ? 1 : -1;
+
+            
+        }
+        else if (carOpponent.Ranking() < this.Ranking())
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+     
+    }
+
+
+    private float GetValueRank()
+    {
+        if(Ranking() == 0) return 0;
+        int position = Ranking() - 1;
+        int i = position/Point.GetLength(1);
+        int j = position%Point.GetLength(1);
+       
+        return Point[i,j];
+
     }
 
 
