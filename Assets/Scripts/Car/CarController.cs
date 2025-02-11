@@ -18,11 +18,7 @@ public class CarController : MonoBehaviour
 
     public CarType carType = CarType.FourWheelDrive;
 
-    public enum ControlMode
-    {
-        Keyboard, 
-        Button
-    };
+    
 
     public ControlMode controlMode;
 
