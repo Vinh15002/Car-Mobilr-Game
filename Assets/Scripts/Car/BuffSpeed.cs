@@ -11,7 +11,7 @@ namespace Assets.Scripts.Car
         [SerializeField] private float boostSpeedType02;
         [SerializeField] private float timeBuffSpeed;
         [SerializeField] private CarController carControl;
-        [SerializeField] private CameraFollower mainCam;
+        private CameraFollower mainCam;
         private CarBuffEffect TypeBuff;
         private CarBuffSpeedEffect buffEffect;
         private PowerCar powerCar;
@@ -22,7 +22,10 @@ namespace Assets.Scripts.Car
         {
             buffEffect = GetComponent<CarBuffSpeedEffect>();
             powerCar = GetComponent<PowerCar>();
+            mainCam = Camera.main.gameObject.GetComponent<CameraFollower>();
         }
+
+        
 
         private void Update()
         {
