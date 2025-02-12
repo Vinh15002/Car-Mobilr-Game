@@ -39,7 +39,9 @@ public class Login : MonoBehaviour
         }
         else
         {
-            message = "Dang nhap thanh cong";
+            ManagerAccount.Instance.setDisactiveUI();
+
+            ManagerScene.Instance.ChangeSceneLoading(StringScene.AreaScene);
         }
         messageLabel.text = message;
     }

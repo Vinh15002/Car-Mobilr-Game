@@ -55,6 +55,11 @@ public class Register: MonoBehaviour
             {
                 Message = "Tên tài khoản đã được sử dụng";
             }
+            else
+            {
+                ManagerAccount.Instance.setDisactiveUI();
+                ManagerScene.Instance.ChangeSceneLoading(StringScene.AreaScene);
+            }
             
         }
         messageLabel.text = Message;

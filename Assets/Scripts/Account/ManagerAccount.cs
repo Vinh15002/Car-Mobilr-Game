@@ -20,8 +20,8 @@ public class ManagerAccount : MonoBehaviour
 
 
     private List<AccountData> listAccounts = new List<AccountData>();
-    private GameObject loginForm;
-    private GameObject registerForm;
+    public  GameObject loginForm;
+    public GameObject registerForm;
     
 
     
@@ -29,10 +29,10 @@ public class ManagerAccount : MonoBehaviour
     private void Start()
     {
        
+       
         DBContext = FirebaseDatabase.DefaultInstance.RootReference;
         GetData();
-        loginForm = transform.Find("Login Window").gameObject;
-        registerForm = transform.Find("Register Window").gameObject;
+        
         Instance = this;
         
     }
@@ -48,6 +48,11 @@ public class ManagerAccount : MonoBehaviour
         }
         else
         {
+            account.name = "?????";
+            account.diamond = 50;
+            account.coin = 50;
+            account.carDatas.Add(new AccountCarData(0, 0, 0));
+            account.carDatas[0].IDSkinCars.Add(0);
             string json = JsonUtility.ToJson(account);
             DBContext.Child("Users").Push().SetValueAsync(json);
             return true;
@@ -60,8 +65,6 @@ public class ManagerAccount : MonoBehaviour
     private void GetData()
     {
         
-       
-
         DBContext.Child("Users").ChildAdded += AddAccount; // Assuming GetValueAsync returns a Task<DataSnapshot>
         
         
@@ -77,11 +80,7 @@ public class ManagerAccount : MonoBehaviour
 
     public bool LoginAccount(AccountData accountData)
     {
-
-
-       
         AccountData account = listAccounts.FirstOrDefault(e => e.username == accountData.username && e.password == accountData.password);
-      
         return account != null;
     }
 
@@ -96,5 +95,14 @@ public class ManagerAccount : MonoBehaviour
         loginForm.SetActive(true);
         registerForm.SetActive(false);
     }
+
+
+
+    public void setDisactiveUI()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+
 }
 
