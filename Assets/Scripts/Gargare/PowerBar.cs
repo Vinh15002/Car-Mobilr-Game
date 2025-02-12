@@ -18,10 +18,10 @@ public class PowerBar: MonoBehaviour
 
 
     [ContextMenu("Test")]
-    public void ChangePower(int index)
+    public void ChangeImage(int index)
     {
-        if (index < 1 || index > 6) return;
-        power.GetComponent<Image>().sprite = listSprite[index-1];
+        if (index < 0 || index > 5) return;
+        power.GetComponent<Image>().sprite = listSprite[index];
     }
 
 

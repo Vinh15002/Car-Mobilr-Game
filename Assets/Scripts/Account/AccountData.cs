@@ -16,7 +16,8 @@ public class AccountData
 
     public List<AccountCarData> carDatas = new List<AccountCarData>();
 
-
+    public int currentCarID = 0;
+    public int currentCarSkinID = 0;
    
 
    

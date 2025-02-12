@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class ManagerColor: MonoBehaviour
 {
+
+
+    public List<GameObject> locks;
     public List<GameObject> colorBTNs;
     public static ManagerColor Intance;
 
@@ -49,6 +52,29 @@ public class ManagerColor: MonoBehaviour
     }
 
 
-   
+    
+
+
+    public void ChangeLock(List<int> UnLockSkins)
+    {
+        
+        Reset();
+        if (UnLockSkins == null) return;
+        foreach (var item in UnLockSkins)
+        {
+            locks[item].SetActive(false);
+        }
+    }
+
+    private void Reset()
+    {
+        foreach(var item in locks)
+        {
+            item.SetActive(true);
+        }
+    }
+
+
+
 }
 

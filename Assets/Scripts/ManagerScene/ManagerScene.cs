@@ -23,6 +23,10 @@ public  class ManagerScene : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    public void ChangeSceneNoLoading(string name)
+    {
+        SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+    }
 
     public void ChangeSceneLoading(string name) {
 

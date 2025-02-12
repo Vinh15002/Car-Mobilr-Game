@@ -22,8 +22,20 @@ public class ManagerAccount : MonoBehaviour
     private List<AccountData> listAccounts = new List<AccountData>();
     public  GameObject loginForm;
     public GameObject registerForm;
-    
 
+
+    private AccountData mainAccount;
+
+    public AccountData MainAccout => mainAccount;
+
+
+    private string mainKey;
+
+    private List<string> KeyAccount = new List<string>();
+
+
+
+    [HideInInspector]public List<Car> DataCar = new List<Car>();
     
 
     private void Start()
@@ -32,7 +44,7 @@ public class ManagerAccount : MonoBehaviour
        
         DBContext = FirebaseDatabase.DefaultInstance.RootReference;
         GetData();
-        
+        GetDataItemCar();
         Instance = this;
         
     }
@@ -49,12 +61,15 @@ public class ManagerAccount : MonoBehaviour
         else
         {
             account.name = "?????";
-            account.diamond = 50;
-            account.coin = 50;
+            account.diamond = 5000;
+            account.coin = 5000;
             account.carDatas.Add(new AccountCarData(0, 0, 0));
             account.carDatas[0].IDSkinCars.Add(0);
             string json = JsonUtility.ToJson(account);
-            DBContext.Child("Users").Push().SetValueAsync(json);
+            var newReference = DBContext.Child("Users").Push();
+                newReference.SetValueAsync(json);
+            mainKey = newReference.Key;
+            mainAccount = account;
             return true;
         }
         
@@ -74,15 +89,30 @@ public class ManagerAccount : MonoBehaviour
     {
        
         var snapshot = e.Snapshot;
+        KeyAccount.Add(snapshot.Key);
         AccountData account = JsonUtility.FromJson<AccountData>(snapshot.Value.ToString());
         listAccounts.Add(account);
+
     }
 
     public bool LoginAccount(AccountData accountData)
     {
-        AccountData account = listAccounts.FirstOrDefault(e => e.username == accountData.username && e.password == accountData.password);
-        return account != null;
+       
+        for(int i = 0; i < listAccounts.Count; i++)
+        {
+            if (listAccounts[i].username == accountData.username && listAccounts[i].password == accountData.password)
+            {
+                mainAccount = listAccounts[i];
+                mainKey = KeyAccount[i];
+                return true;
+            }
+        }
+        return false;
+        
+       
     }
+
+    
 
     public void ChangeRegisterForm()
     {
@@ -102,6 +132,64 @@ public class ManagerAccount : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(false);
     }
+
+
+    public void UpdateName(string name)
+    {
+        mainAccount.name = name;
+        string json = JsonUtility.ToJson(mainAccount);
+        DBContext.Child("Users").Child(mainKey).SetValueAsync(json);
+    }
+
+
+    public bool BuyItemByDiamond(int amount)
+    {
+
+        if (mainAccount.diamond < amount) return false;
+        else
+        {
+            
+            return true;
+        }
+    }
+
+    public bool BuyItemByGold(int amount)
+    {
+
+        if (mainAccount.diamond < amount) return false;
+        else
+        {
+          
+            return true;
+        }
+    }
+
+    public void UpdateAccount(AccountData account)
+    {
+        string json = JsonUtility.ToJson(account);
+        DBContext.Child("Users").Child(mainKey).SetValueAsync(json);
+    }
+
+
+    private void GetDataItemCar()
+    {
+
+        DBContext.Child("ItemCar").ChildAdded += AddDataCar; // Assuming GetValueAsync returns a Task<DataSnapshot>
+
+
+    }
+
+    private void AddDataCar(object sender, ChildChangedEventArgs e)
+    {
+
+        var snapshot = e.Snapshot;
+
+        Car cardata = JsonUtility.FromJson<Car>(snapshot.Value.ToString());
+        DataCar.Add(cardata);
+    }
+
+
+
 
 
 }
