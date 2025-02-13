@@ -12,7 +12,7 @@ namespace Assets.Scripts.CarAIEnemy.CarOpponent
     public class ResetDestenition : MonoBehaviour
     {
         private OpponentCarWaypoints car;
-        private float timeToReset = 30f;
+        private float timeToReset = 5f;
         private float _timeToReset = 0f;
 
         private bool isReset
@@ -50,7 +50,7 @@ namespace Assets.Scripts.CarAIEnemy.CarOpponent
             if(isReset)
             {
                 car.SetResetDestenitation();
-
+                _timeToReset = 0;
             }
         }
 

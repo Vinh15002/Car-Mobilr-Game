@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.MiniMap
 {
@@ -15,6 +16,20 @@ namespace Assets.Scripts.MiniMap
             CameraFollow();
         }
 
+
+        public void OnEnable()
+        {
+            ChangeTargetEvent.setTarGetCar += ChangeTarGetCar;
+        }
+        public void OnDisable()
+        {
+            ChangeTargetEvent.setTarGetCar -= ChangeTarGetCar;
+        }
+
+        private void ChangeTarGetCar(GameObject car)
+        {
+            this.car = car;
+        }
 
         private void CameraFollow()
         {

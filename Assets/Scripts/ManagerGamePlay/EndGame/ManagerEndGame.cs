@@ -13,6 +13,8 @@ public class ManagerEndGame : MonoBehaviour
     public GameObject UI;
     public static ManagerEndGame Instance;
 
+    public List<GameObject> UIEndGameOff;
+
     private int currentPos = 0;
 
     private List<FinishData> nameCar;
@@ -33,7 +35,10 @@ public class ManagerEndGame : MonoBehaviour
         else
         {
             UI.SetActive(true);
-
+            foreach(var item in UIEndGameOff)
+            {
+                item.SetActive(false);
+            }
             AddMainCarComplete();
 
 

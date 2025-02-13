@@ -7,7 +7,8 @@ public  class StringScene
     public static string LoadingScene = "LoadingScene";
     public static string AreaScene = "AreaScene";
     public static string GargareScene = "GargareScene";
-
+    public static string MenuSelectScene = "MenuSelectScene";
+    public static string ChampionScene = "ChampionScene";
 
 
 

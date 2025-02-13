@@ -11,7 +11,7 @@ public class CameraFollower : MonoBehaviour
     [SerializeField] private Vector3 moveOffset;
     [SerializeField] private Vector3 rotationOffset;
 
-    [SerializeField] private Transform carTarget;
+    [HideInInspector] public  Transform carTarget;
     [SerializeField] private float desiredFOV = 80f;
 
     

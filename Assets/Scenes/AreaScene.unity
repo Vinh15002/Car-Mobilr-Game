@@ -1844,6 +1844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopBTN: {fileID: 1504360540}
+  PlayBTN: {fileID: 845664029}
   NamePlayer: {fileID: 1338220632}
   nameAvatar: {fileID: 1137690123}
 --- !u!1 &1137690121

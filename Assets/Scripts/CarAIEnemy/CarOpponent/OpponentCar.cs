@@ -85,7 +85,7 @@ public class OpponentCar : MonoBehaviour
     {
         float redu = Random.Range(0f, acceleration);
         currentSpeed -= angle/180* redu;
-        currentSpeed = currentSpeed >= 0 ? currentSpeed : 0;
+        currentSpeed = currentSpeed >= 3 ? currentSpeed : 3;
     }
 
    

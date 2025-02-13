@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class AreaScene : MonoBehaviour
 {
     public Button ShopBTN;
+    public Button PlayBTN;
     public static AreaScene Instance;
     private AccountData account;
     [SerializeField] private GameObject NamePlayer;
@@ -19,8 +20,14 @@ public class AreaScene : MonoBehaviour
         account = ManagerAccount.Instance.MainAccout;
         ProcessData();
         ShopBTN.onClick.AddListener(ChangeShopScene);
+        PlayBTN.onClick.AddListener(ChangePlayScene);
 
 
+    }
+
+    private void ChangePlayScene()
+    {
+        ManagerScene.Instance.ChangeSceneLoading(StringScene.MenuSelectScene);
     }
 
     private void ChangeShopScene()

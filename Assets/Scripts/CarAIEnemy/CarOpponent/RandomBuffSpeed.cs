@@ -45,7 +45,7 @@ namespace Assets.Scripts.CarAIEnemy.CarOpponent
             isBuffSpeed = true;
             float speedBuff = Random.Range(minBuffSpeed, maxBuffSpeed);
             car.currentSpeed += speedBuff*buffType;
-            car.currentSpeed = car.currentSpeed >= 0 ? car.currentSpeed : 5;
+            car.currentSpeed = car.currentSpeed >= 3 ? car.currentSpeed : 3;
             yield return new WaitForSeconds(_timeToBuff);
             
             isBuffSpeed = false;

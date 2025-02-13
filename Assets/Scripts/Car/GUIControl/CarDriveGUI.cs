@@ -11,7 +11,7 @@ namespace Assets.Scripts.Car.GUIControl
     public class CarDriveGUI : MonoBehaviour
     {
 
-        [SerializeField] private CarController car;
+        private CarController car;
 
         
         private float valueSteering = 0;
@@ -21,10 +21,26 @@ namespace Assets.Scripts.Car.GUIControl
         private bool isPressButton = false;
 
 
+        private void OnEnable()
+        {
+            ChangeTargetEvent.setTarGetCar += SetData;
+        }
         public void Update()
         {
             HandleDrive();
         }
+
+        private void OnDisable()
+        {
+            ChangeTargetEvent.setTarGetCar -= SetData;
+        }
+
+        private void SetData(GameObject car)
+        {
+            this.car = car.GetComponent<CarController>();
+        }
+
+        
 
 
 
@@ -43,18 +59,17 @@ namespace Assets.Scripts.Car.GUIControl
         }
         public void OnLeftDownButton()
         {
-            Debug.Log("Left");
+            
             valueSteering = -1f;
             isPressButton = true;
-            //valueSteering = valueSteering > -speedSteering ? valueSteering : -speedSteering;
+            
         }
 
         public void OnRightDownButton()
         {
-            Debug.Log("Right");
+           
             valueSteering = 1f;
             isPressButton = true;
-            //valueSteering = valueSteering < speedSteering ? valueSteering : speedSteering;
         }
 
         

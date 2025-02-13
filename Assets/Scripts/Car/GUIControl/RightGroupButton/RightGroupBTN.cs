@@ -17,31 +17,32 @@ namespace Assets.Scripts.Car.GUIControl.RightGroupButton
         [SerializeField] private GameObject car;
         private GameObject BuffSpeedBTN;
         private ButtonPressEvent DriftBTN;
-        private Button ReverseBTN;
+        private ButtonPressEvent DirectionBTN;
+        
 
         private CarController carControl;
-        [SerializeField]private BuffSpeed buffSpeed;
+        private BuffSpeed buffSpeed;
         private bool isFullPower = false;
 
         private void Start()
         {
             BuffSpeedBTN = transform.Find("BuffSpeed").gameObject;
             DriftBTN = transform.Find("DriftCar").GetComponent<ButtonPressEvent>();
-            ReverseBTN = transform.Find("ReverseDirection").GetComponent<Button>();
-            carControl = car.GetComponent<CarController>();
-            buffSpeed = car.GetComponentInChildren<BuffSpeed>();
+            DirectionBTN = transform.Find("ReverseDirection").GetComponent<ButtonPressEvent>();
+
+           
             BuffSpeedBTN.GetComponent<Button>().onClick.AddListener(ProcessBuffSpeedBTN);
-
-
-
-
             DriftBTN.eventPressBTN += DriftCarEvent;
             DriftBTN.eventReleaseBTN += NoDriftEvent;
-            ReverseBTN.onClick.AddListener(reverseDirection);
+            DirectionBTN.eventPressBTN += DirectionTowardEvent;
+            DirectionBTN.eventReleaseBTN += DirectionBackwardEvent;
+           
 
 
 
         }
+
+        
 
         private void FixedUpdate()
         {
@@ -51,6 +52,14 @@ namespace Assets.Scripts.Car.GUIControl.RightGroupButton
         private void OnEnable()
         {
             PowerCarEvent.powerFull += ChangeStatus;
+            ChangeTargetEvent.setTarGetCar += SetData;
+        }
+
+        private void SetData(GameObject car)
+        {
+            this.car = car;
+            carControl = car.GetComponent<CarController>();
+            buffSpeed = car.GetComponentInChildren<BuffSpeed>();
         }
 
         private void ChangeStatus(bool status)
@@ -95,13 +104,18 @@ namespace Assets.Scripts.Car.GUIControl.RightGroupButton
             carControl.handBrake = false;
         }
 
-
-        private void reverseDirection()
+        private void DirectionBackwardEvent()
         {
-            
-            carControl.vertical *= -1f;
-          
+            carControl.vertical = 1;
         }
+
+        private void DirectionTowardEvent()
+        {
+            carControl.vertical = -1;
+        }
+
+
+     
 
 
 

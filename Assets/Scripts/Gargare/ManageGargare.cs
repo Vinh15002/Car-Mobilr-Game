@@ -1,9 +1,6 @@
-﻿using Firebase.Database;
-using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +17,8 @@ public class ManageGargare: MonoBehaviour
     [SerializeField] private GameObject BuffSpeed;
     [SerializeField] private GameObject BuffPower;
 
+    public List<ParticleSystem> effectUpdate;
+
     private int currentIndex = 0;
     private int currentSkin = 0;
 
@@ -35,7 +34,9 @@ public class ManageGargare: MonoBehaviour
     private void Start()
     {
         Instance = this;
-        
+        SetEffectOff();
+
+
         accountData = ManagerAccount.Instance.MainAccout;
         ResourceEvent.updateResource?.Invoke(accountData.diamond, accountData.coin);
         
@@ -178,7 +179,7 @@ public class ManageGargare: MonoBehaviour
             int powerLevel = accountData.carDatas[currentIndex].currentBuffLevel;
 
             
-            //Debug.Log(speedLevel);
+            
             if (speedLevel != 5)
             {
                 BuffSpeed.SetActive(true);
@@ -204,6 +205,12 @@ public class ManageGargare: MonoBehaviour
             }
             
         }
+        else
+        {
+            UpgradeButtonEvent.changeTextPower?.Invoke(0, 0);
+            UpgradeButtonEvent.changeTextSpeed?.Invoke(0, 0);
+
+        }
         
     }
 
@@ -212,6 +219,7 @@ public class ManageGargare: MonoBehaviour
         bool ok = ManagerAccount.Instance.BuyItemByGold(amount);
         if (ok)
         {
+            SetEffectOn();
             int powerLevel = accountData.carDatas[currentIndex].currentBuffLevel;
             powerLevel++;
             accountData.coin -= amount;
@@ -233,6 +241,7 @@ public class ManageGargare: MonoBehaviour
         bool ok = ManagerAccount.Instance.BuyItemByGold(amount);
         if (ok)
         {
+            SetEffectOn();
             int speedLevel = accountData.carDatas[currentIndex].currentSpeedLevel;
             speedLevel++;
             accountData.coin -= amount;
@@ -278,6 +287,22 @@ public class ManageGargare: MonoBehaviour
         accountData.currentCarID = currentIndex;
         ManagerAccount.Instance.UpdateAccount(accountData);
         ManagerScene.Instance.ChangeSceneNoLoading(StringScene.AreaScene);
+    }
+
+
+    public void SetEffectOn()
+    {
+        foreach(var par in this.effectUpdate)
+        {
+            par.Play();
+        }
+    }
+    public void SetEffectOff()
+    {
+        foreach (var par in this.effectUpdate)
+        {
+            par.Stop();
+        }
     }
 }
 

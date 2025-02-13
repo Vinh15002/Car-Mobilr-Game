@@ -156,7 +156,7 @@ public class ManagerAccount : MonoBehaviour
     public bool BuyItemByGold(int amount)
     {
 
-        if (mainAccount.diamond < amount) return false;
+        if (mainAccount.coin < amount) return false;
         else
         {
           
