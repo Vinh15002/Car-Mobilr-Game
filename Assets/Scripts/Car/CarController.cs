@@ -42,7 +42,7 @@ public class CarController : MonoBehaviour
     public WheelCollider BackWRColider;
 
     
-    private float currentSpeed;
+   
     [Header("Movement, Steering, Bracking")]
     public float maximunMotoTorque; //Mo men xoan dong co toi da 
     public float maximumSteeringAngle = 20f; //Goc dieu khien toi da
@@ -101,6 +101,7 @@ public class CarController : MonoBehaviour
             if (Input.GetKey(KeyCode.Space)) handBrake = true;
             else handBrake = false;
 
+            
         }
     }
 
@@ -113,42 +114,21 @@ public class CarController : MonoBehaviour
         carSpeedConverted = Mathf.Round(carSpeed * 3.6f);
         SpeedCarEvent.speedCarUI?.Invoke(carSpeedConverted, maximumSpeed);
         ApplyMotorTorque();
-       
-        
-
         handleDripting();
 
-
-       
-
+        //Voulum 
+        if(ManagerSound.Instance != null)
+        {
+            ManagerSound.Instance.AddSoundCar(carSpeedConverted);
+        }
         
 
+
+
+
     }
 
-    private void handleDripting()
-    {
-        if (handBrake)
-        {
-           
-            
-            ApplyBrake();
-            smokeEffect.setEnableSmokeEffect(true);
-            trailEffect.SetTrailEnable(true);
-        }
-        else
-        {
-
-            
-            ReleaseBrake();
-
-            if (carSpeedConverted < maximumSpeed)
-                MotorTorque = maximunMotoTorque * vertical;
-            else
-                MotorTorque = 0;
-            smokeEffect.setEnableSmokeEffect(false);
-            trailEffect.SetTrailEnable(false);
-        }
-    }
+   
 
     private void CalculateSteering()
     {
@@ -183,7 +163,27 @@ public class CarController : MonoBehaviour
         }
     }
 
-
+    private void handleDripting()
+    {
+        if (handBrake)
+        {
+            ApplyBrake();
+            smokeEffect.setEnableSmokeEffect(true);
+            trailEffect.SetTrailEnable(true);
+            ManagerSound.Instance.TurnOnDrift();
+        }
+        else
+        {
+            ReleaseBrake(); 
+            if (carSpeedConverted < maximumSpeed)
+                MotorTorque = maximunMotoTorque * vertical;
+            else
+                MotorTorque = 0;
+            smokeEffect.setEnableSmokeEffect(false);
+            trailEffect.SetTrailEnable(false);
+            ManagerSound.Instance.TurnOffDrift();
+        }
+    }
 
     private void ApplyBrake()
     {
@@ -205,18 +205,6 @@ public class CarController : MonoBehaviour
         BackWLColider.brakeTorque = brackePower * Mathf.Pow(carSpeed, 5);
         BackWLColider.brakeTorque = brackePower * Mathf.Pow(carSpeed, 5);
 
-
-        //WheelFrictionCurve customeCerveFW = new WheelFrictionCurve();
-        //customeCerveFW.extremumSlip = 4f; ;
-        //customeCerveFW.extremumValue = 1f;
-        //customeCerveFW.asymptoteSlip = 0.5f;
-        //customeCerveFW.asymptoteValue = 0.5f;
-        //customeCerveFW.stiffness = 10;
-        //FrontWLColider.sidewaysFriction = customeCerveFW;
-        //FrontWRColider.sidewaysFriction = customeCerveFW;
-
-        //Adding Power
-
         PowerCarEvent.addPower(Time.deltaTime * 50);
     }
 
@@ -235,16 +223,6 @@ public class CarController : MonoBehaviour
         customCurve.stiffness = begin;
         BackWLColider.sidewaysFriction = customCurve;
         BackWRColider.sidewaysFriction = customCurve;
-
-        //WheelFrictionCurve customeCerveFW = new WheelFrictionCurve();
-        //customeCerveFW.extremumSlip = 0.4f; ;
-        //customeCerveFW.extremumValue = 1f;
-        //customeCerveFW.asymptoteSlip = 0.8f;
-        //customeCerveFW.asymptoteValue = 0.5f;
-        //customeCerveFW.stiffness = 1;
-        //FrontWLColider.sidewaysFriction = customeCerveFW;
-        //FrontWRColider.sidewaysFriction = customeCerveFW;
-
 
     }
 

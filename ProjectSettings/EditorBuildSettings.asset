@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChampionScene.unity
     guid: 1f99930a559255c40a134c0aa38341d0
+  - enabled: 1
+    path: Assets/Scenes/Map03.unity
+    guid: a35f446eaaa5c744ab08025567ac8d9d
+  - enabled: 1
+    path: Assets/Scenes/Map01.unity
+    guid: 045940e4166791847aa9a7048fdce0bf
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: a40fcbe42cea1d84c86658469805192c,
       type: 2}

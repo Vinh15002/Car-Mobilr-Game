@@ -29,7 +29,7 @@ public class MenuSelectedScene: MonoBehaviour
 
     private void ChangeToPractieScene()
     {
-        throw new NotImplementedException();
+        ManagerScene.Instance.ChangeSceneLoading(StringScene.PracticeMap);
     }
 
     private void ChangeToChampion()

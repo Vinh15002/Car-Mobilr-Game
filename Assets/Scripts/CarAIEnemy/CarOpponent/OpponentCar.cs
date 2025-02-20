@@ -13,6 +13,7 @@ public class OpponentCar : MonoBehaviour
     [SerializeField] private float acceleration = 1f;
     [SerializeField] private float turingSpeed = 30f;
     [SerializeField] private float breackSpeed = 12f;
+    [SerializeField] private float upscaleSpeed = 1f;
 
     public float currentSpeed = 10f;
 
@@ -58,7 +59,7 @@ public class OpponentCar : MonoBehaviour
 
                 float angle = Vector3.Angle(transform.forward, direction);
 
-                currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, Time.deltaTime);
+                currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, Time.deltaTime* upscaleSpeed);
                 ApplyBrackePower(angle);
                 rb.velocity = transform.forward * currentSpeed;
             }

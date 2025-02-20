@@ -15,8 +15,6 @@ namespace Assets.Scripts.MiniMap
         {
             CameraFollow();
         }
-
-
         public void OnEnable()
         {
             ChangeTargetEvent.setTarGetCar += ChangeTarGetCar;
@@ -35,19 +33,9 @@ namespace Assets.Scripts.MiniMap
         {
             Vector3 positonFollower = car.transform.position;
             cam.transform.position = new Vector3(positonFollower.x, cam.transform.position.y, positonFollower.z);
-
-
             //Calculate Angle 
             Vector3 carDirection = car.transform.forward;
-           
-            
-
-
             float RotZ = Mathf.Atan2(carDirection.z, carDirection.x) * Mathf.Rad2Deg;
-
-
-
-           
             Quaternion rotationImage = Quaternion.Euler(0, 0, RotZ);
             repersentationImage.transform.rotation = rotationImage;
         }

@@ -7,8 +7,8 @@ namespace Assets.Scripts.Car
 {
     public class BuffSpeed : MonoBehaviour
     {
-        [SerializeField] private float boostSpeedType01;
-        [SerializeField] private float boostSpeedType02;
+        public float boostSpeedType01;
+        public float boostSpeedType02;
         [SerializeField] private float timeBuffSpeed;
         [SerializeField] private CarController carControl;
         private CameraFollower mainCam;
@@ -33,6 +33,12 @@ namespace Assets.Scripts.Car
             DisableBuff();
 
            
+        }
+
+        public void SetBuffSpeed(float buff)
+        {
+            this.boostSpeedType01 = buff;
+            this.boostSpeedType02 = buff*2.5f;
         }
 
         private void DisableBuff()
@@ -71,15 +77,12 @@ namespace Assets.Scripts.Car
 
         public IEnumerator ProcessBuff()
         {
-
-            
             float timeStart = 0;
             buffEffect.BuffEfect(TypeBuff);
             AddCarSpeed(TypeBuff);
             powerCar.UsingPower(TypeBuff);
             while (timeStart < timeBuffSpeed)
             {
-                
                 mainCam.EnableBoostCar();
                 yield return null;
                 timeStart += Time.deltaTime;
@@ -87,8 +90,6 @@ namespace Assets.Scripts.Car
             buffEffect.ResetEffect();
             
             isBuffSpeed = false;
-
-
         }
 
 

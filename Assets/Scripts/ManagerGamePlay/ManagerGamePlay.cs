@@ -1,5 +1,6 @@
 ﻿
 
+using Assets.Scripts.Car;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,15 +12,16 @@ public class ManagerGamePlay: MonoBehaviour
 
     public List<GameObject> allCar;
 
-    public float currentTime = 3.2f;
+    public float currentTime = 5.2f;
 
     public void Start()
     {
 
-        StartCoroutine(CoutDownTime());
+        
         Time.timeScale = 0;
         SetUpData();
-        
+        StartCoroutine(CoutDownTime());
+
     }
 
     private void SetUpData()
@@ -31,6 +33,7 @@ public class ManagerGamePlay: MonoBehaviour
         {
             currentCar = ManagerAccount.Instance.MainAccout.currentCarID;
             currentSkin = ManagerAccount.Instance.MainAccout.currentCarSkinID;
+            
         }
 
         GameObject car = null;
@@ -43,8 +46,23 @@ public class ManagerGamePlay: MonoBehaviour
             }
         }
         car.SetActive(true);
+        if (ManagerAccount.Instance != null)
+        {
+            car.GetComponent<CarController>().maximunMotoTorque = ManagerAccount.Instance.getSpeedCurrentCar();
+            car.GetComponentInChildren<BuffSpeed>().SetBuffSpeed(ManagerAccount.Instance.getPowerCurrentCar());
+
+        }
+        else
+        {
+            car.GetComponent<CarController>().maximunMotoTorque = 900;
+            car.GetComponentInChildren<BuffSpeed>().SetBuffSpeed(20f);
+        }
+
+
         Camera.main.gameObject.GetComponent<CameraFollower>().carTarget = car.transform;
+        Camera.main.gameObject.GetComponent<CameraFollower>().FollowTarget();
         GetComponent<ManagerCar>().mainCar = car.transform.Find("Body").gameObject;
+
         ChangeTargetEvent.setTarGetCar?.Invoke(car);
     }
 
@@ -53,10 +71,15 @@ public class ManagerGamePlay: MonoBehaviour
 
         while (currentTime > 0f)
         {
-            currentTime -= (float)(Time.unscaledTime*0.01);
-            yield return null;
+            currentTime -= 0.01f;
 
-            CountDownEvent.transferTime?.Invoke(currentTime);
+
+            if (currentTime < 3.2f)
+            {
+                CountDownEvent.transferTime?.Invoke(currentTime);
+            }
+            yield return new WaitForSecondsRealtime(0.01f);
+
 
         }
         Time.timeScale = 1;

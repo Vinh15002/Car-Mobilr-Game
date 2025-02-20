@@ -228,9 +228,6 @@ public class ManageGargare: MonoBehaviour
             GetUpdateGold();
             ResourceEvent.updateResource?.Invoke(accountData.diamond, accountData.coin);
             ManagerAccount.Instance.UpdateAccount(accountData);
-            
-
-           
         }
 
         

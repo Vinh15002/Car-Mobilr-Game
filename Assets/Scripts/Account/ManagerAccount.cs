@@ -41,6 +41,7 @@ public class ManagerAccount : MonoBehaviour
     private void Start()
     {
        
+        DontDestroyOnLoad(this);
        
         DBContext = FirebaseDatabase.DefaultInstance.RootReference;
         GetData();
@@ -166,6 +167,7 @@ public class ManagerAccount : MonoBehaviour
 
     public void UpdateAccount(AccountData account)
     {
+        mainAccount = account;
         string json = JsonUtility.ToJson(account);
         DBContext.Child("Users").Child(mainKey).SetValueAsync(json);
     }
@@ -189,6 +191,18 @@ public class ManagerAccount : MonoBehaviour
     }
 
 
+    public float getSpeedCurrentCar()
+    {
+        int currentIDCar = mainAccount.currentCarID;
+        float value = this.DataCar[currentIDCar].level.getSpeedCar(mainAccount.carDatas[currentIDCar].currentSpeedLevel);
+        return value;
+    }
+    public float getPowerCurrentCar()
+    {
+        int currentIDCar = mainAccount.currentCarID;
+        float value = this.DataCar[currentIDCar].level.getPowerCar();
+        return value;
+    }
 
 
 

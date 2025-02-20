@@ -42,10 +42,12 @@ public  class ManagerScene : MonoBehaviour
 
         while (!operation.isDone)
         {
+            
             float progress = operation.progress;
+            LoadingEvent.changeTextLoading?.Invoke(progress);
             yield return null;
 
-            LoadingEvent.changeTextLoading?.Invoke(progress);
+            
 
 
         }

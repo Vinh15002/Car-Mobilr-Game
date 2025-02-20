@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ManagerEndGame : MonoBehaviour
@@ -19,12 +20,22 @@ public class ManagerEndGame : MonoBehaviour
 
     private List<FinishData> nameCar;
 
+    public Button back;
+
+
+
+
     private void Start()
     {
         Instance = this;
         nameCar = new List<FinishData>();
+        back.onClick.AddListener(BackScene);
     }
 
+    private void BackScene()
+    {
+        ManagerScene.Instance.ChangeSceneNoLoading(StringScene.AreaScene);
+    }
 
     public void AddCarRank(bool isMainCar)
     {
@@ -82,8 +93,14 @@ public class ManagerEndGame : MonoBehaviour
     private void AddMainCarComplete()
     {
         currentPos++;
+        string name;
+        name = "YOU";
+        if (ManagerAccount.Instance != null)
+        {
+            name = ManagerAccount.Instance.MainAccout.name;
+        }
         
-        FinishData data = new FinishData(currentPos.ToString(), "You", TimeGamePlay.Instance.ConvertTime());
+        FinishData data = new FinishData(currentPos.ToString(), name, TimeGamePlay.Instance.ConvertTime());
         nameCar.Add(data);
     }
    

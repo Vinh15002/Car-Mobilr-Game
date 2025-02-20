@@ -58,7 +58,7 @@ public class ManagerCar : MonoBehaviour
             ManagerEndGame.Instance.AddCarRank(ok);
             if (!ok)
             {
-                mainCar.SetActive(false);
+                car.SetActive(false);
             }
         }
         carMissions[car] = amountLapComplete;

@@ -44,7 +44,7 @@ public class CameraFollower : MonoBehaviour
     }
 
 
-    void FollowTarget()
+    public void FollowTarget()
     {
         HangleCarMovement();
         HandleRotation();

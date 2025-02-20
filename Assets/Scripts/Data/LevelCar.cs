@@ -20,26 +20,26 @@ public class LevelCar
 
 
 
-    public float getSpeedCar()
+    public float getSpeedCar(int level)
     {
-        if(currentSpeedLevel == 1)
+        if(level == 0)
         {
             return speedCar;
 
         }
-        else if(currentSpeedLevel == 2)
+        else if(level == 1)
         {
             return speedCar + 50;
         }
-        else if(currentSpeedLevel == 3)
+        else if(level == 2)
         {
             return speedCar + 100;
         }
-        else if(currentSpeedLevel == 4)
+        else if(level == 3)
         {
             return speedCar + 200;
         }
-        else if(currentSpeedLevel == 5)
+        else if(level == 4)
         {
             return speedCar + 300;
         }
@@ -48,6 +48,11 @@ public class LevelCar
             return speedCar + 500;
         }
 
+    }
+
+    public float getPowerCar()
+    {
+        return powerCar;
     }
 
 

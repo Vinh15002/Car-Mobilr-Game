@@ -13,9 +13,7 @@ public class AccountData
     public string name;
     public int diamond;
     public int coin;
-
     public List<AccountCarData> carDatas = new List<AccountCarData>();
-
     public int currentCarID = 0;
     public int currentCarSkinID = 0;
    
