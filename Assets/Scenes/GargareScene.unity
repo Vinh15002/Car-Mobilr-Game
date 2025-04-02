@@ -827,8 +827,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c9adb1f542a93ae489bacfeae21e8394, type: 2}
-  m_sharedMaterial: {fileID: -8643439910342830561, guid: c9adb1f542a93ae489bacfeae21e8394,
+  m_fontAsset: {fileID: 11400000, guid: dea826c6d56d268498a2951a259e7033, type: 2}
+  m_sharedMaterial: {fileID: -5329540102573392909, guid: dea826c6d56d268498a2951a259e7033,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2297,6 +2297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939972447}
   - component: {fileID: 939972448}
+  - component: {fileID: 939972449}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -2380,6 +2381,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &939972449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939972446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &962015115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,6 +2606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071946534}
   - component: {fileID: 1071946533}
+  - component: {fileID: 1071946535}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -2596,7 +2621,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071946532}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
@@ -2665,6 +2690,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1071946535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071946532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1107606402
 GameObject:
   m_ObjectHideFlags: 0
@@ -5376,8 +5424,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c9adb1f542a93ae489bacfeae21e8394, type: 2}
-  m_sharedMaterial: {fileID: -8643439910342830561, guid: c9adb1f542a93ae489bacfeae21e8394,
+  m_fontAsset: {fileID: 11400000, guid: dea826c6d56d268498a2951a259e7033, type: 2}
+  m_sharedMaterial: {fileID: -5329540102573392909, guid: dea826c6d56d268498a2951a259e7033,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

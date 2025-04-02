@@ -1,7 +1,8 @@
 ﻿
-using NUnit.Framework;
-using System;
+
+
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class ManagerEndGame : MonoBehaviour
     public GameObject positonRank;
     public GameObject rankCar;
     public GameObject UI;
+
+    public TMP_Text text_add;
     public static ManagerEndGame Instance;
 
     public List<GameObject> UIEndGameOff;
@@ -51,7 +54,7 @@ public class ManagerEndGame : MonoBehaviour
                 item.SetActive(false);
             }
             AddMainCarComplete();
-
+            AddCoin();
 
             while (currentPos < ManagerCar.Instance.GetAmountCar())
             {
@@ -65,6 +68,17 @@ public class ManagerEndGame : MonoBehaviour
        
         
         
+    }
+
+    //1 - > 300 _400 
+    //2, 3 -> 100 - 300
+    //4, -> 0-100
+    private void AddCoin()
+    {
+        int random = Random.Range(0, 100);
+        int valueAdd = (4 - currentPos) * 100 + random;
+        text_add.text = valueAdd.ToString();
+        ManagerAccount.Instance.AddCoint(valueAdd);
     }
 
     private void AddUI()

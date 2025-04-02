@@ -204,7 +204,10 @@ public class ManagerAccount : MonoBehaviour
         return value;
     }
 
-
-
+    public void AddCoint(int valueAdd)
+    {
+        this.mainAccount.coin += valueAdd;
+        UpdateAccount(this.mainAccount);
+    }
 }
 

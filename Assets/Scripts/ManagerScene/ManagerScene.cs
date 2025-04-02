@@ -25,7 +25,7 @@ public  class ManagerScene : MonoBehaviour
 
     public void ChangeSceneNoLoading(string name)
     {
-        SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+        SceneManager.LoadScene(name);
     }
 
     public void ChangeSceneLoading(string name) {
@@ -38,7 +38,7 @@ public  class ManagerScene : MonoBehaviour
     public IEnumerator LoadSceneAsync(string name)
     {
         yield return new WaitForSeconds(1);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(name);
 
         while (!operation.isDone)
         {
