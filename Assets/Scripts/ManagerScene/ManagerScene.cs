@@ -2,6 +2,7 @@
 
 
 using System.Collections;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,34 +26,43 @@ public  class ManagerScene : MonoBehaviour
 
     public void ChangeSceneNoLoading(string name)
     {
-        SceneManager.LoadScene(name);
+        
+        SceneManager.LoadScene(name,  LoadSceneMode.Single);
+        
+        
     }
 
-    public void ChangeSceneLoading(string name) {
-
-        loadingCanvas.SetActive(true);
-        StartCoroutine(LoadSceneAsync(name));
-    }
-
-
-    public IEnumerator LoadSceneAsync(string name)
+    public void ChangeSceneLoading(string name)
     {
-        yield return new WaitForSeconds(1);
+
+
+        LoadSceneAsync(name);
+    }
+
+
+    public async void  LoadSceneAsync(string name)
+    {
+        
+      
         AsyncOperation operation = SceneManager.LoadSceneAsync(name);
-
-        while (!operation.isDone)
+        loadingCanvas.SetActive(true);
+        LoadingEvent.changeTextLoading?.Invoke(0);
+        
+        operation.allowSceneActivation = false;
+        float process = 0;
+        do
         {
+            await Task.Delay(100);
+            process = Mathf.Clamp01(operation.progress/0.9f);
             
-            float progress = operation.progress;
-            LoadingEvent.changeTextLoading?.Invoke(progress);
-            yield return null;
-
-            
-
-
-        }
+            LoadingEvent.changeTextLoading?.Invoke(process);
+        }while(operation.progress < 0.9f);
+        
+        await Task.Delay(1000);
+        operation.allowSceneActivation = true;
+        await Task.Delay(1000);
         loadingCanvas.SetActive(false);
-
+        
 
     }
 }
